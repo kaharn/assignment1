@@ -1,15 +1,22 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Student student1 = new Student("Ali", 19, 3.5);
+        Student student2 = new Student("Aruzhan", 20, 3.8);
+
+        Teacher teacher = new Teacher("Mr. Smith", "Programming", 10);
+
+        Institution university = new Institution("Astana IT University", "Astana", 8000);
+
+        System.out.println(student1.getInfo());
+        System.out.println(student2.getInfo());
+        System.out.println(teacher.getInfo());
+        System.out.println(university.getInfo());
+
+        if (student1.getGpa() > student2.getGpa()) {
+            System.out.println(student1.getName() + " has a higher GPA than " + student2.getName());
+        } else {
+            System.out.println(student2.getName() + " has a higher GPA than " + student1.getName());
         }
     }
 }
