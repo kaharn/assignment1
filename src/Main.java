@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
 
-        Student student1 = new Student("Ali", 19, 3.5);
-        Student student2 = new Student("Aruzhan", 20, 3.8);
+        Student student1 = new Student("Kakhar", 19, 3.5);
+        Student student2 = new Student("Nassyrkhan", 20, 3.8);
 
         Teacher teacher = new Teacher("Mr. Smith", "Programming", 10);
 
