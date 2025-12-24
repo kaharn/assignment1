@@ -1,7 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Institution {
+
     private String name;
     private String city;
     private int studentsCount;
+
+    // Data pool (polymorphism)
+    private List<Person> people = new ArrayList<>();
 
     // Constructor
     public Institution(String name, String city, int studentsCount) {
@@ -38,5 +44,15 @@ public class Institution {
     // Method
     public String getInfo() {
         return "Institution: " + name + ", City: " + city + ", Students: " + studentsCount;
+    }
+
+    public void addPerson(Person person) {
+        people.add(person);
+    }
+
+    public void showPeople() {
+        for (Person p : people) {
+            System.out.println(p.getInfo());
+        }
     }
 }
