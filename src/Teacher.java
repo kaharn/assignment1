@@ -40,7 +40,7 @@ public class Teacher extends Person {
                 ", Experience: " + experienceYears + " years";
     }
 
-    // ===== Assignment 2 required overrides =====
+
 
     @Override
     public String toString() {
