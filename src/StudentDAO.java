@@ -1,5 +1,15 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class StudentDAO {
+
+    private static final Logger logger =
+            Logger.getLogger(StudentDAO.class.getName());
 
     // CREATE
     public void insertStudent(String name, int age, double gpa) {
@@ -11,12 +21,14 @@ public class StudentDAO {
             ps.setString(1, name);
             ps.setInt(2, age);
             ps.setDouble(3, gpa);
-            ps.executeUpdate();
 
-            System.out.println("Student inserted");
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Student inserted successfully");
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error inserting student", e);
         }
     }
 
@@ -28,6 +40,9 @@ public class StudentDAO {
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
 
+            System.out.println("ID | NAME | AGE | GPA");
+            System.out.println("----------------------");
+
             while (rs.next()) {
                 System.out.println(
                         rs.getInt("id") + " | " +
@@ -38,7 +53,7 @@ public class StudentDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error reading students", e);
         }
     }
 
@@ -51,12 +66,14 @@ public class StudentDAO {
 
             ps.setDouble(1, newGpa);
             ps.setInt(2, id);
-            ps.executeUpdate();
 
-            System.out.println("Student updated");
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Student GPA updated successfully");
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error updating GPA", e);
         }
     }
 
@@ -68,12 +85,14 @@ public class StudentDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ps.executeUpdate();
 
-            System.out.println("Student deleted");
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Student deleted successfully");
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error deleting student", e);
         }
     }
 }
