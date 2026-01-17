@@ -1,15 +1,25 @@
 import java.util.ArrayList;
 import java.util.List;
+
 public class Institution {
 
+    private int id;                 // DB primary key
     private String name;
     private String city;
     private int studentsCount;
 
-    // Data pool (polymorphism)
+    // Polymorphism
     private List<Person> people = new ArrayList<>();
 
-    // Constructor
+    // Constructor for DB
+    public Institution(int id, String name, String city, int studentsCount) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.studentsCount = studentsCount;
+    }
+
+    // Constructor without id
     public Institution(String name, String city, int studentsCount) {
         this.name = name;
         this.city = city;
@@ -17,20 +27,16 @@ public class Institution {
     }
 
     // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public int getStudentsCount() {
@@ -41,11 +47,15 @@ public class Institution {
         this.studentsCount = studentsCount;
     }
 
-    // Method
+    // Info method
     public String getInfo() {
-        return "Institution: " + name + ", City: " + city + ", Students: " + studentsCount;
+        return "Institution{id=" + id +
+                ", name='" + name +
+                "', city='" + city +
+                "', students=" + studentsCount + "}";
     }
 
+    // Polymorphism methods
     public void addPerson(Person person) {
         people.add(person);
     }
@@ -54,5 +64,10 @@ public class Institution {
         for (Person p : people) {
             System.out.println(p.getInfo());
         }
+    }
+
+    @Override
+    public String toString() {
+        return getInfo();
     }
 }
